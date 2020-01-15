@@ -1,0 +1,94 @@
+Exp 1: Create an Application to save employee information using arrays
+import java.util.*;
+
+public class Main
+{
+    static class Employee{
+    int empNo;
+    String EmpName;
+    String Date;
+    char DesignCode;
+    String Dept;
+    int Basic;
+    int HRA;
+    int It;
+    Employee(int empNo,String EmpName, String Date, char DesignCode, String Dept, int Basic,int HRA, int It){
+        this.empNo = empNo;
+    this.EmpName =EmpName;
+    this.Date= Date;
+    this.DesignCode= DesignCode;
+    this.Dept =Dept;
+    this.Basic= Basic;
+    this.HRA = HRA;
+    this.It =It;
+    }
+}
+	public static void main(String[] args) {
+	    int n = 7;
+		Employee arr[] = new Employee[n];
+		arr[0] = new Employee(1001, "Ashish", "01/04/2009", 'e', "R&D", 20000, 8000, 3000);
+		arr[1] = new Employee(1002, "Sushma", "23/08/2012", 'c', "PM", 30000, 12000, 9000);
+		arr[2] = new Employee(1003, "Rahul", "12/11/2008", 'k', "Acct", 10000, 8000, 1000);
+		arr[3] = new Employee(1004, "Chahat", "29/01/2013", 'r', "Front Desk",12000, 6000, 2000);
+		arr[4] = new Employee(1005, "Ranjan", "16/07/2005", 'm', "Engg", 50000, 20000 ,20000);
+		arr[5] = new Employee(1006, "Suman", "1/1/2000", 'e', "Manufacturing",23000, 9000, 4400);
+		arr[6] = new Employee(1007, "Tanmay", "12/06/2006", 'c', "PM", 29000, 12000, 10000);
+	    Scanner s = new Scanner(System.in);
+	    System.out.println("Enter the employee code");
+	    int ecode = s.nextInt();
+	    System.out.println(ecode-1001);
+	    if(ecode-1001>n||ecode-1001<0){
+	        System.out.println("Invalid Employee Id");
+	    }
+	    else{
+	        char dcode = arr[ecode-1001].DesignCode;
+	        int salary =0;
+	        switch(dcode){
+	            case 'e':
+	                salary = arr[ecode-1001].Basic+arr[ecode-1001].HRA+arr[ecode-1001].It + 20000 ;
+	                System.out.println("Employee id"+ arr[ecode-1001].empNo); 
+	                System.out.println("Employee Name"+ arr[ecode-1001].EmpName);
+	                System.out.println("Employee Department "+ arr[ecode-1001].Dept);
+	                System.out.println("Department Engineer");
+	                System.out.println("Salary"+ salary);
+	                
+	                break;
+	            case 'c':
+	                salary = arr[ecode-1001].Basic+arr[ecode-1001].HRA+arr[ecode-1001].It + 32000 ;
+	                System.out.println("Employee id "+ arr[ecode-1001].empNo); 
+	                System.out.println("Employee Name "+ arr[ecode-1001].EmpName);
+	                System.out.println("Employee Department "+ arr[ecode-1001].Dept);
+	                System.out.println("Department Consultant ");
+	                System.out.println("Salary "+ salary);
+	                break;
+	            case 'k':
+	                      salary = arr[ecode-1001].Basic+arr[ecode-1001].HRA+arr[ecode-1001].It + 12000 ;
+	                System.out.println("Employee id "+ arr[ecode-1001].empNo); 
+	                System.out.println("Employee Name "+ arr[ecode-1001].EmpName);
+	                System.out.println("Employee Department "+ arr[ecode-1001].Dept);
+	                System.out.println("Department Clerk ");
+	                System.out.println("Salary "+ salary);
+	                break;
+	            case 'r':
+	                        salary = arr[ecode-1001].Basic+arr[ecode-1001].HRA+arr[ecode-1001].It + 15000 ;
+	                System.out.println("Employee id "+ arr[ecode-1001].empNo); 
+	                System.out.println("Employee Name "+ arr[ecode-1001].EmpName);
+	                System.out.println("Employee Department "+ arr[ecode-1001].Dept);
+	                System.out.println("Department Receptionist ");
+	                System.out.println("Salary "+ salary);
+	                break;
+	            case 'm':
+	                      salary = arr[ecode-1001].Basic+arr[ecode-1001].HRA+arr[ecode-1001].It + 40000 ;
+	                System.out.println("Employee id "+ arr[ecode-1001].empNo); 
+	                System.out.println("Employee Name "+ arr[ecode-1001].EmpName);
+	                System.out.println("Employee Department "+ arr[ecode-1001].Dept);
+	                System.out.println("Department Manager ");
+	                System.out.println("Salary"+ salary);
+	                break;
+	           default:
+        System.out.println("Invalid Code Input ");
+	        }
+	    }
+	}
+	
+}
