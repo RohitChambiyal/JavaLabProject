@@ -1,0 +1,336 @@
+import java.util.Scanner;
+import java.text.DecimalFormat;
+abstract class Account 
+{ 
+double interestRate; 
+double amount;
+abstract double calculateInterest ();
+}
+class negVE extends Exception 
+{
+negVE ()
+  {
+System.out.println ("Wrong Values Entered");
+}
+}
+class FDAccount extends Account 
+{
+double interestRate; 
+double amount, interestGained;
+int noOfDays, ageOfACHolder;
+double calculateInterest () 
+  {
+Scanner sc = new Scanner (System.in); 
+try
+    {
+System.out.println ("Please Enter FD amount"); 
+amount = sc.nextDouble ();
+if (amount < 0)
+	{
+System.out.print ("Error: Invalid amount."); 
+throw new negVE ();
+}
+System.out.println ("Please Enter number of days: ");     
+noOfDays = sc.nextInt ();
+if (noOfDays < 0)
+	{
+System.out.print ("Error: Entered Number of Days Invalid."); 
+throw new negVE ();
+}
+if (amount <= 10000000)	
+	{
+System.out.println ("Please Enter age of Account holder "); 
+ageOfACHolder = sc.nextInt ();
+if (ageOfACHolder < 0)
+	    {
+System.out.print ("Error: Entered Age Invalid.");
+throw new negVE ();	    
+}
+if (noOfDays >= 7 && noOfDays <= 14)	    
+	    {
+if (ageOfACHolder < 59)
+		{
+interestRate = 4.5;
+}	      
+else		
+	{		  
+interestRate = 5;	
+}
+}	  
+else if (noOfDays >= 15 && noOfDays <= 29)	  
+	    {
+if (ageOfACHolder < 59)
+		{
+interestRate = 4.75;
+}
+else		
+		{	  
+interestRate = 5.25;
+}
+}
+	  else if (noOfDays >= 30 && noOfDays <= 45)
+	    {
+if (ageOfACHolder < 59)
+		{
+interestRate = 5.5;
+}
+	      else
+		{
+interestRate = 6;
+}
+}
+	  else if (noOfDays >= 46 && noOfDays <= 60)
+	    {
+if (ageOfACHolder < 59)
+		{
+interestRate = 7;
+}
+	      else
+		{
+interestRate = 7.5;
+}
+}
+	  else if (noOfDays >= 61 && noOfDays <= 184)
+	    {
+if (ageOfACHolder < 59)
+		{
+interestRate = 7.5;
+}
+	      else
+		{
+interestRate = 8;
+}
+}
+	  else if (noOfDays >= 185 && noOfDays <= 365)
+	    {
+if (ageOfACHolder < 59)
+		{
+interestRate = 8;
+}
+	      else
+		{
+interestRate = 8.5;
+}
+}
+}
+      else
+	{
+if (noOfDays >= 7 && noOfDays <= 14)
+	    {
+interestRate = 6.5;
+}
+	  else if (noOfDays >= 15 && noOfDays <= 29)
+	    {
+interestRate = 6.75;
+}
+	  else if (noOfDays >= 30 && noOfDays <= 45)
+	    {
+interestRate = 6.75;
+}
+	  else if (noOfDays >= 46 && noOfDays <= 60)
+	    {
+interestRate = 8;
+}
+	  else if (noOfDays >= 61 && noOfDays <= 184)
+	    {
+interestRate = 8.5;
+}
+	  else if (noOfDays >= 185 && noOfDays <= 365)
+	    {
+interestRate = 10;
+}
+}
+interestGained = (amount / 100) * interestRate;
+DecimalFormat df = new DecimalFormat ("###.###");
+System.out.println ("gained Interest :" +
+			   df.format (interestGained));
+}
+catch (negVE e) 
+    {
+}
+return 0;
+}
+}
+class SBAccount extends Account 
+{
+double interestRate;
+double amount;
+double interestGained;
+String accountType;
+double calculateInterest () 
+  {
+Scanner sc = new Scanner (System.in);
+try
+    {
+System.out.println ("Enter Average amount in account:");
+amount = sc.nextDouble ();
+if (amount < 0)
+	{
+System.out.print ("Invalid amount.");
+throw new negVE ();
+}
+System.out.println ("Enter Account type:\n\t NormalAccount \t NRIType");
+accountType = sc.next ();
+if (accountType.equalsIgnoreCase ("NormalAccount"))
+	{
+interestRate = 4;
+}
+      else if (accountType.equalsIgnoreCase ("NRIType"))
+	{
+interestRate = 6;
+}
+interestGained = (amount / 100) * interestRate;
+DecimalFormat df = new DecimalFormat ("###.###");
+System.out.println ("Gained Interest: " +
+			   df.format (interestGained));
+}
+catch (negVE e) 
+    {
+}
+return 0;
+}
+}
+class RDAccount extends Account 
+{
+double interestRate;
+double amount;
+int noOfMonths, ageOfACHolder;
+double monthlyAmount, interestGained;
+double calculateInterest () 
+  {
+Scanner sc = new Scanner (System.in);
+try
+    {
+System.out.println ("Please Enter the monthly RD amount");
+monthlyAmount = sc.nextDouble ();
+if (monthlyAmount < 0)
+	{
+System.out.print ("Error: Invalid amount.");
+throw new negVE ();
+}
+System.out.println ("Enter number of months:");
+noOfMonths = sc.nextInt ();
+if (noOfMonths < 0)
+	{
+System.out.print ("Error: Invalid Number of Months.");
+throw new negVE ();
+}
+System.out.println ("Enter the Account holder age:");
+ageOfACHolder = sc.nextInt ();
+if (ageOfACHolder < 0)
+	{
+System.out.print ("Error: Invalid Age.");
+throw new negVE ();
+}
+if (noOfMonths > 0 && noOfMonths <= 6)
+	{
+if (ageOfACHolder < 59)
+	    {
+interestRate = 7.5;
+}
+	  else
+	    {
+interestRate = 8;
+}
+}
+      else if (noOfMonths > 6 && noOfMonths <= 9)
+	{
+if (ageOfACHolder < 59)
+	    {
+interestRate = 7.75;
+}
+	  else
+	    {
+interestRate = 8.25;
+}
+}
+      else if (noOfMonths > 9 && noOfMonths <= 12)
+	{
+if (ageOfACHolder < 59)
+	    {
+interestRate = 8;
+}
+	  else
+	    {
+interestRate = 8.5;
+}
+}
+      else if (noOfMonths > 12 && noOfMonths <= 15)
+	{
+if (ageOfACHolder < 59)
+	    {
+interestRate = 8.25;
+}
+	  else
+	    {
+interestRate = 8.75;
+}
+}
+      else if (noOfMonths > 15 && noOfMonths <= 18)
+	{
+if (ageOfACHolder < 59)
+	    {
+interestRate = 8.5;
+}
+	  else
+	    {
+interestRate = 9;
+}
+}
+      else if (noOfMonths > 18 && noOfMonths <= 21)
+	{
+if (ageOfACHolder < 59)
+	    {
+interestRate = 8.75;
+}
+	  else
+	    {
+interestRate = 9.25;
+}
+}
+amount = monthlyAmount * noOfMonths;
+interestGained = (amount / 100) * interestRate;
+DecimalFormat df = new DecimalFormat ("###.###");
+System.out.println ("Gained Interest is : Rs." +
+			   df.format (interestGained));
+}
+    catch (negVE e) 
+    {
+}
+return 0;
+}
+}
+public class Main
+{
+public static void main (String[]args) 
+  {
+Scanner sc = new Scanner (System.in);
+    do
+      {
+System.out.println ("Select the option:\n");
+System.out.println ("\t\t 1. Interest Calculator -SB");
+System.out.println ("\t\t 2. Interest Calculator -FD");
+System.out.println ("\t\t 3. Interest Calculator -RD");
+System.out.println ("\t\t 4.Exit");
+int op = sc.nextInt ();
+switch (op)
+	  {
+case 1:
+Account sb = new SBAccount ();
+sb.calculateInterest ();
+break;
+case 2:
+Account fd = new FDAccount ();
+fd.calculateInterest ();
+break;
+case 3:
+Account rd = new RDAccount ();
+rd.calculateInterest ();
+break;
+case 4:
+System.exit (0);
+}
+}
+    while (1 == 1);
+}
+}
